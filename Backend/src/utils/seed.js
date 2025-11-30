@@ -2,7 +2,7 @@ const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
 const mongoose = require("mongoose");
 const connectDB = require("../config/mongoDB");
-const QuestionModel = require("../models/QuestionModel");
+const QuestionModel = require("../models/questionModel");
 
 const questions = [
   {
