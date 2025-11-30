@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-// import QuizPage from './pages/QuizPage'; 
-// import Result from './pages/Result';   
+import QuizPage from './pages/QuizPage'; 
+import Result from './pages/Result';   
 
 function App() {
   return (
@@ -11,8 +11,8 @@ function App() {
       <div className="container mx-auto px-4 py-8">
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/quiz/:topic" element={<QuizPage />} /> */}
-          {/* <Route path="/result" element={<Result />} /> */}
+          <Route path="/quiz/:topic" element={<QuizPage />} />
+          <Route path="/result" element={<Result />} />
         </Routes>
       </div>
     </div>
