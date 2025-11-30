@@ -18,7 +18,7 @@ const Home = () => {
           <button 
             key={topic}
             onClick={() => navigate(`/quiz/${topic}`)}
-            className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 text-xl font-semibold text-gray-700 border-l-4 border-indigo-500"
+            className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 text-xl font-semibold text-gray-700 border-l-4 border-indigo-500 cursor-pointer"
           >
             {topic} Quiz
           </button>
