@@ -14,7 +14,7 @@ router.get('/quizzes', async (req, res) => {
 
 router.get('/questions/:topic', async (req, res) => {
   try {
-    const questions = await Question.aggregate([
+    const questions = await QuestionModel.aggregate([
       { $match: { topic: req.params.topic } },
       { $sample: { size: 5 } }
     ]);
