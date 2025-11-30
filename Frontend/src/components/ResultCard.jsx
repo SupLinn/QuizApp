@@ -38,13 +38,24 @@ const ResultCard = ({ result }) => {
           </div>
         </div>
 
-        <button
-          onClick={() => navigate('/')}
-          className="w-full py-4 bg-gray-900 hover:bg-black text-white text-lg font-bold rounded-xl shadow-lg transition-transform transform active:scale-95 focus:outline-none focus:ring-4 focus:ring-gray-300"
-        >
-          Play Again
-        </button>
+        <div className="flex flex-col gap-3">
+            <button
+            onClick={() => navigate('/')}
+            className="w-full py-4 bg-gray-900 hover:bg-black text-white text-lg font-bold rounded-xl shadow-lg transition-transform transform active:scale-95 focus:outline-none focus:ring-4 focus:ring-gray-300"
+            >
+            Play Again
+            </button>
+
+            <button
+            onClick={() => navigate('/review', { state: { result } })}
+            className="w-full py-3 bg-white text-indigo-600 border-2 border-indigo-100 rounded-xl font-bold hover:bg-indigo-50 transition"
+            >
+            Review Detailed Answers
+            </button>
+        </div>
+
       </div>
+
     </div>
   );
 }

@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import QuizPage from './pages/QuizPage'; 
 import Result from './pages/Result';   
+import ReviewPage from './pages/ReviewPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/quiz/:topic" element={<QuizPage />} />
           <Route path="/result" element={<Result />} />
+          <Route path="/review" element={<ReviewPage />} />
         </Routes>
       </div>
     </div>

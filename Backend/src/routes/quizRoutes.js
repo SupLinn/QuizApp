@@ -35,26 +35,55 @@ router.get('/questions/:topic', async (req, res) => {
 });
 
 router.post('/submit', async (req, res) => {
-    
-    const { submissions } = req.body;
-    let score = 0;
-    let correct = 0;
-    let incorrect = 0;
+  const { submissions } = req.body;
+  
+  let score = 0;
+  let correct = 0;
+  let incorrect = 0;
+  const detailedResults = [];
 
-    try {
-        for (const sub of submissions) {
-            const question = await QuestionModel.findById(sub.questionId);
-            if (question && question.correctAnswer === sub.answer) {
-                score += 10;
-                correct++;
-            } else {
-                incorrect++;
-            }
-        }
-        res.json({ score, correct, incorrect, total: submissions.length });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+  try {
+    const questionIds = submissions.map(s => s.questionId);
+    const questions = await QuestionModel.find({ _id: { $in: questionIds } });
+
+    const questionMap = new Map(questions.map(q => [q._id.toString(), q]));
+
+    for (const sub of submissions) {
+      const question = questionMap.get(sub.questionId);
+      
+      if (!question) continue;
+
+      const isCorrect = question.correctAnswer === sub.answer;
+
+      if (isCorrect) {
+        score += 10;
+        correct++;
+      } else {
+        incorrect++;
+      }
+
+      detailedResults.push({
+        questionId: question._id,
+        text: question.text,
+        userAnswer: sub.answer,
+        correctAnswer: question.correctAnswer,
+        isCorrect: isCorrect,
+        topic: question.topic
+      });
     }
+
+    res.json({ 
+      score, 
+      correct, 
+      incorrect, 
+      total: submissions.length,
+      details: detailedResults
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 module.exports = router;
