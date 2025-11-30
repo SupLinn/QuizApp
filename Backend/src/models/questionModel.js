@@ -20,6 +20,6 @@ const questionSchema = new mongoose.Schema({
     }
 }, {timestamps : true})
 
-const QuestionModel = new mongoose.model("Question", questionSchema)
+const QuestionModel = mongoose.model("Question", questionSchema)
 
 module.exports = QuestionModel
